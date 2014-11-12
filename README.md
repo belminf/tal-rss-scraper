@@ -18,3 +18,8 @@ Install requirements:
 . bin/activate
 pip install -r requirements.txt
 ```
+
+To-Do
+-----
+- Remove duplicates
+- Filter out when mp3 does not exist
