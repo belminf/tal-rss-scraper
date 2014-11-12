@@ -6,6 +6,9 @@
 from scrapy.item import Item, Field
 
 class TALEpisode(Item):
-    id = Field()
-    name = Field()
-    mp3 = Field()
+    number = Field()
+    title = Field()
+    pubdate = Field()
+    description = Field()
+    audio_url = Field()
+    link = Field()

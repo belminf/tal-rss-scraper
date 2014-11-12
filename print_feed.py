@@ -13,7 +13,16 @@ def main():
     # set up signal to catch items scraped
     def catch_item(sender, item, **kwargs):
         try:
-            print('<item>{name}</item>'.format(**item))
+            print("""\
+    <item>
+        <title>#{number}: {title}</title>
+        <link>{link}</link>
+        <description>{description}</description>
+        <pubDate>{pubdate}</pubDate>
+        <guid>{audio_url}</guid>
+        <enclosure url="{audio_url}" length="0" type="audio/mpeg" />
+    </item>\
+""".format(**item))
         except:
             print 'ERROR', item
 
@@ -39,6 +48,10 @@ def main():
     # start engine scrapy/twisted
     crawler.start()
     reactor.run()
+
+    # print footer
+    with open('footer.xml') as f:
+        print f.read()
 
 
 if __name__ == '__main__':
