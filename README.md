@@ -21,5 +21,5 @@ pip install -r requirements.txt
 
 To-Do
 -----
-- Remove duplicates
+- Remove duplicates (i.e., repeats)
 - Filter out when mp3 does not exist
