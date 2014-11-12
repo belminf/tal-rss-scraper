@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+<channel>
+    <title>This American Life - Belmin's archive</title>
+    <link>http://www.thisamericanlife.org</link>
+    <description>Belmin's archive of Chicago Public Media's This American Life hosted by Ira Glass</description>
+    <language>en-us</language>
+    <copyright>Copyright 1995-2013 Chicago Public Media &amp; Ira Glass</copyright>
+    <media:copyright>Copyright 1995-2013 Chicago Public Media &amp; Ira Glass</media:copyright>
+    <media:thumbnail url="http://www.thisamericanlife.org/sites/all/themes/thislife/images/logo-square-1400.jpg"/>
+    <media:rating>nonadult</media:rating>
+    <itunes:author>Chicago Public Media</itunes:author>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="http://www.thisamericanlife.org/sites/all/themes/thislife/images/logo-square-1400.jpg"/>
+    <itunes:subtitle>This American Life by Chicago Public Media</itunes:subtitle>
+    <itunes:summary>Official free, weekly podcast of the award-winning radio show "This American Life." First-person stories and short fiction pieces that are touching, funny, and surprising. Hosted by Ira Glass, from WBEZ Chicago Public Media, and distributed by Public Radio International. In mp3 and updated Mondays.</itunes:summary>
+    <itunes:category text="Society &amp; Culture"/>
+    <itunes:category text="Arts"/>
+    <itunes:category text="News &amp; Politics"/>
+    <media:credit role="author">Chicago Public Media</media:credit>
