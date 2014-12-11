@@ -19,6 +19,12 @@ Install requirements:
 pip install -r requirements.txt
 ```
 
+Setup header and footers:
+```
+cp header.xml{.example,}
+cp footer.xml{.example,}
+```
+
 To-Do
 -----
 - Remove duplicates (i.e., repeats)

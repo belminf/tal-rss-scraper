@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
 <channel>
-    <title>This American Life - Belmin's archive</title>
+    <title>Archive of This American Life</title>
     <link>http://www.thisamericanlife.org</link>
-    <description>Belmin's archive of Chicago Public Media's This American Life hosted by Ira Glass</description>
+    <description>An archive of Chicago Public Media's This American Life hosted by Ira Glass</description>
     <language>en-us</language>
-    <copyright>Copyright 1995-2013 Chicago Public Media &amp; Ira Glass</copyright>
-    <media:copyright>Copyright 1995-2013 Chicago Public Media &amp; Ira Glass</media:copyright>
+    <copyright>Copyright Chicago Public Media &amp; Ira Glass</copyright>
+    <media:copyright>Copyright Chicago Public Media &amp; Ira Glass</media:copyright>
     <media:thumbnail url="http://www.thisamericanlife.org/sites/all/themes/thislife/images/logo-square-1400.jpg"/>
     <media:rating>nonadult</media:rating>
     <itunes:author>Chicago Public Media</itunes:author>

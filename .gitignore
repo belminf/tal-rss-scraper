@@ -5,3 +5,5 @@ lib64/
 lib64
 lib
 *.pyc
+footer.xml
+header.xml
