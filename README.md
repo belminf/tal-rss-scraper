@@ -28,4 +28,4 @@ cp footer.xml{.example,}
 To-Do
 -----
 - Remove duplicates (i.e., repeats)
-- Filter out when mp3 does not exist
+~~- Filter out when mp3 does not exist~~
