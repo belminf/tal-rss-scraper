@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from datetime import date
 from urlparse import urljoin
+from httplib import HTTPConnection
 
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
@@ -15,7 +16,9 @@ from tal.items import TALEpisode
 THIS_YEAR = date.today().year
 FIRST_YEAR = 1995
 ARCHIVE_URL = 'http://www.thisamericanlife.org/radio-archives/{0}'
-EPISODE_URL = 'http://audio.thisamericanlife.org/jomamashouse/ismymamashouse/{0}.mp3'
+EPISODE_SERVER = 'audio.thisamericanlife.org'
+EPISODE_PATH = '/jomamashouse/ismymamashouse/{0}.mp3'
+EPISODE_URL = 'http://{EPISODE_SERVER}{EPISODE_PATH}'.format(**locals())
 
 
 class TALSpider(BaseSpider):
@@ -41,13 +44,25 @@ class TALSpider(BaseSpider):
         number, title = hxs.select('//h1[contains(concat(" ", normalize-space(@class), " "), " node-title ")]/text()')[0].extract().split(': ', 1)
         pubdate = hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " node-episode ")]/div[1]/div[1]/div[2]/text()')[0].extract()
         description = hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " description ")]/text()')[0].extract()
-        yield TALEpisode(
-            number=number.encode('utf-8'),
-            title=title.encode('utf-8'),
-            pubdate=pubdate.encode('utf-8'),
-            description=description.strip().encode('utf-8'),
-            audio_url=EPISODE_URL.format(number).encode('utf-8'),
-            link=response.url
-        )
+
+        # Check if mp3 exists
+        conn = HTTPConnection(EPISODE_SERVER)
+        episode_exists = False
+        try:
+            conn.request('HEAD', EPISODE_PATH.format(number))
+            res = conn.getresponse()
+            episode_exists = (res.status == 200)
+        except:
+            pass
+
+        if episode_exists:
+            yield TALEpisode(
+                number=number.encode('utf-8'),
+                title=title.encode('utf-8'),
+                pubdate=pubdate.encode('utf-8'),
+                description=description.strip().encode('utf-8'),
+                audio_url=EPISODE_URL.format(number).encode('utf-8'),
+                link=response.url
+            )
 
 
