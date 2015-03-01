@@ -3,6 +3,9 @@ tal-rss-scraper
 
 Scraping This American Life and creating RSS feed
 
+System requirements
+---
+
 RHEL6 system requirements:
 ```
 sudo yum install -y libxml-devel libxslt-devel libiffi-dev python-virtualenv python-pip 
@@ -24,9 +27,11 @@ virtualenv --no-site-packages tal-rss-scraper
 mkvirtualenv --no-site-packages tal-rss-scraper
 ```
 
-Install requirements:
+Installing:
+----
+
+First, Python requirements:
 ```
-. bin/activate
 pip install -r requirements.txt
 ```
 
@@ -34,6 +39,12 @@ Setup header and footers:
 ```
 cp header.xml{.example,}
 cp footer.xml{.example,}
+```
+
+Opionally, create a cron job. Take into account that the PWD has to be where the project is. For e.g.:
+
+```
+cd /home/belminf/tal-rss-scraper/; /home/belminf/.virtualenvs/tal-rss-scraper/bin/python ./print_feed.py >| /srv/www/tal-archive/feed.rss
 ```
 
 To-Do
