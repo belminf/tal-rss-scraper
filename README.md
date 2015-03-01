@@ -14,9 +14,14 @@ sudo apt-get install -y python-pip libxslt1-dev libffi-dev libxml2-dev libssl-de
 pip install virtualenv
 ```
 
-Create virtualenv:
+Create virtualenv and activate it:
 ```
+# normally
 virtualenv --no-site-packages tal-rss-scraper
+. bin\activate
+
+# with virtualenvwrapper
+mkvirtualenv --no-site-packages tal-rss-scraper
 ```
 
 Install requirements:
