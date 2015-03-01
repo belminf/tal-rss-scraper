@@ -3,9 +3,15 @@ tal-rss-scraper
 
 Scraping This American Life and creating RSS feed
 
-System requirements (RHEL6 based distro):
+RHEL6 system requirements:
 ```
-yum install -y libxml-devel libxslt-devel libiffi-dev python-virtualenv python-pip 
+sudo yum install -y libxml-devel libxslt-devel libiffi-dev python-virtualenv python-pip 
+```
+
+Ubuntu 14.04 system requirements:
+```
+sudo apt-get install -y python-pip libxslt1-dev libffi-dev libxml2-dev libssl-dev
+pip install virtualenv
 ```
 
 Create virtualenv:
