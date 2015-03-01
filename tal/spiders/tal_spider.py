@@ -16,10 +16,10 @@ from tal.items import TALEpisode
 THIS_YEAR = date.today().year
 FIRST_YEAR = 1995
 ARCHIVE_URL = 'http://www.thisamericanlife.org/radio-archives/{0}'
-EPISODE_SERVER = 'audio.thisamericanlife.org'
-EPISODE_PATH = '/jomamashouse/ismymamashouse/{0}.mp3'
-EPISODE_URL = 'http://{EPISODE_SERVER}{EPISODE_PATH}'.format(**locals())
-
+EPISODE_FILE_URLS = (
+    ('audio.thisamericanlife.org', '/jomamashouse/ismymamashouse/{0}.mp3'),
+    ('podcast.thisamericanlife.org', '/podcast/{0}.mp3'),
+)
 
 class TALSpider(BaseSpider):
     name = 'tal'
@@ -45,23 +45,27 @@ class TALSpider(BaseSpider):
         pubdate = hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " node-episode ")]/div[1]/div[1]/div[2]/text()')[0].extract()
         description = hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " description ")]/text()')[0].extract()
 
-        # Check if mp3 exists
-        conn = HTTPConnection(EPISODE_SERVER)
-        episode_exists = False
-        try:
-            conn.request('HEAD', EPISODE_PATH.format(number))
-            res = conn.getresponse()
-            episode_exists = (res.status == 200)
-        except:
-            pass
+        # Check if mp3 exists on any server
+        episode_url = None
+        for this_server, this_path in EPISODE_FILE_URLS:
+            conn = HTTPConnection(this_server)
+            try:
+                conn.request('HEAD', this_path.format(number))
+                res = conn.getresponse()
+                if res.status == 200:
+                    episode_url = 'http://{0}'.format(this_server) + this_path.format(number)
+                    break
+            except:
+                pass
 
-        if episode_exists:
+        # If found, yield it
+        if episode_url:
             yield TALEpisode(
                 number=number.encode('utf-8'),
                 title=title.encode('utf-8'),
                 pubdate=pubdate.encode('utf-8'),
                 description=description.strip().encode('utf-8'),
-                audio_url=EPISODE_URL.format(number).encode('utf-8'),
+                audio_url=episode_url.encode('utf-8'),
                 link=response.url
             )
 
