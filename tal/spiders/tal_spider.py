@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from datetime import date
+from datetime import datetime
 from urlparse import urljoin
 from httplib import HTTPConnection
 
@@ -42,7 +43,7 @@ class TALSpider(BaseSpider):
     def parse_episode(self, response):
         hxs = HtmlXPathSelector(response)
         number, title = hxs.select('//h1[contains(concat(" ", normalize-space(@class), " "), " node-title ")]/text()')[0].extract().split(': ', 1)
-        pubdate = hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " node-episode ")]/div[1]/div[1]/div[2]/text()')[0].extract()
+        pubdate = datetime.strptime(hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " node-episode ")]/div[1]/div[1]/div[2]/text()')[0].extract(), '%b %d, %Y').strftime('%a, %d %b %Y 00:00:00 -0500')
         description = hxs.select('//div[contains(concat(" ", normalize-space(@class), " "), " description ")]/text()')[0].extract()
 
         # Check if mp3 exists on any server
