@@ -27,7 +27,7 @@ virtualenv --no-site-packages tal-rss-scraper
 mkvirtualenv --no-site-packages tal-rss-scraper
 ```
 
-Installing:
+Installing
 ----
 
 First, Python requirements:
